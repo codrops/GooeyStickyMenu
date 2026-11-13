@@ -1,0 +1,15 @@
+/* Variation 03, aloe: its colours, over css/shop.css; the section words in the green of an aloe leaf */
+
+:root {
+  /* the ground, lighter at the top and darker at the bottom around #acc39d, the way honey's is */
+  --color-bg-top: #bdd2af;
+  --color-bg: #7fb15f;
+  --color-text: #1a1e17;
+  /* dark enough to read at 15px on the darker part of the ground */
+  --color-muted: #2c3226;
+  /* deep enough to stand out on the green ground */
+  --color-title: #2f4325;
+  --color-link: #1a1e17;
+  --color-link-hover: #000;
+  --color-rule: rgb(94 107 86 / 45%);
+}

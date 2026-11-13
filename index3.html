@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aloe Gooey Sticky Menu | Codrops</title>
+  <meta name="description" content="The sticky menu as aloe gel: short, thick strands that neck down and snap back like jelly. Made with WebGL and GSAP. Part of Codrops' Gooey Sticky Menu." />
+  <link rel="canonical" href="https://tympanus.net/Demos/GooeyStickyMenu/index3.html" />
+  <meta name="theme-color" content="#acc39d" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Codrops" />
+  <meta property="og:title" content="Aloe Gooey Sticky Menu | Codrops" />
+  <meta property="og:description" content="The sticky menu as aloe gel: short, thick strands that neck down and snap back like jelly. Made with WebGL and GSAP. Part of Codrops' Gooey Sticky Menu." />
+  <meta property="og:url" content="https://tympanus.net/Demos/GooeyStickyMenu/index3.html" />
+  <meta property="og:image" content="https://tympanus.net/Demos/GooeyStickyMenu/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="A liquid menu pulling strands from a photograph as the page scrolls" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@codrops" />
+  <meta name="twitter:creator" content="@codrops" />
+  <meta name="twitter:title" content="Aloe Gooey Sticky Menu | Codrops" />
+  <meta name="twitter:description" content="The sticky menu as aloe gel: short, thick strands that neck down and snap back like jelly. Made with WebGL and GSAP. Part of Codrops' Gooey Sticky Menu." />
+  <meta name="twitter:image" content="https://tympanus.net/Demos/GooeyStickyMenu/og-image.jpg" />
+  <meta name="twitter:image:alt" content="A liquid menu pulling strands from a photograph as the page scrolls" />
+  <link rel="icon" type="image/svg+xml" href="https://tympanus.net/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="https://tympanus.net/favicon/favicon.ico" />
+  <link rel="preload" href="fonts/HostGrotesk-Latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="img/aloe/hero.webp" as="image" type="image/webp" fetchpriority="high" />
+  <link rel="stylesheet" type="text/css" href="css/base.css" />
+  <link rel="stylesheet" type="text/css" href="css/shop.css" />
+  <link rel="stylesheet" type="text/css" href="css/aloe.css" />
+  <!-- Added on the live server only, leave commented out in the repo -->
+  <!--script src="//tympanus.net/codrops/adpacks/analytics.js"></script-->
+</head>
+
+<body class="loading" data-material="aloe">
+  <nav class="menu" aria-label="Aloe leaf gel">
+    <a class="menu__link" href="#aloe">Aloe</a>
+    <a class="menu__link" href="#leaf">Leaf</a>
+    <a class="menu__link" href="#skin">Skin</a>
+    <a class="menu__link" href="#shop">Shop</a>
+  </nav>
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+      <canvas class="goo" aria-hidden="true"></canvas>
+      <main>
+        <header class="frame">
+          <div class="frame__head">
+            <h1 class="frame__title">Gooey Sticky Menu</h1>
+            <nav class="frame__links" aria-label="Demo links">
+              <a href="https://tympanus.net/codrops/hub/">All demos</a>
+              <a href="https://github.com/codrops/GooeyStickyMenu">GitHub</a>
+            </nav>
+          </div>
+          <nav class="frame__demos" aria-label="Variations">
+            <span class="frame__demos-label">Variations</span>
+            <a class="frame__demo" href="index.html">Jelly</a>
+            <a class="frame__demo" href="index2.html">Honey</a>
+            <span class="frame__demo frame__demo--current" aria-current="page">Aloe</span>
+            <a class="frame__demo" href="index4.html">Caramel</a>
+          </nav>
+          <nav class="frame__tags" aria-label="Tags">
+            <a href="https://tympanus.net/codrops/hub/tag/gooey/">#gooey</a>
+            <a href="https://tympanus.net/codrops/hub/tag/menu/">#menu</a>
+            <a href="https://tympanus.net/codrops/hub/tag/scroll/">#scroll</a>
+            <a href="https://tympanus.net/codrops/hub/tag/webgl/">#webgl</a>
+            <a href="https://tympanus.net/codrops/hub/tag/glsl/">#glsl</a>
+            <a href="https://tympanus.net/codrops/hub/tag/gsap/">#gsap</a>
+          </nav>
+        </header>
+
+        <section class="hero" id="aloe">
+          <div class="hero__picture goo-picture" data-parallax data-focus-x="0.64" style="--focus-x: 64%">
+            <img src="img/aloe/hero.webp" width="1376" height="768" alt="A small clear jar of aloe gel on a pale stone wall beside a freshly cut aloe leaf, aloe plants behind" />
+          </div>
+          <div class="hero__info">
+            <h2 class="hero__name">Aloe<br />Leaf Gel</h2>
+            <p class="hero__about">Fresh gel from the north<br />of Lanzarote&nbsp;· 150&nbsp;ml</p>
+            <div class="hero__buy">
+              <p>€18</p>
+              <a class="buy" href="#shop">Add to bag</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="statement" aria-label="The gel">
+          <p class="statement__text">Aloe grows slowly in the black volcanic soil of northern Lanzarote, with little rain and a steady wind. We cut a few outer leaves from each plant by hand, early in the morning, and open them the same day. The gel inside is clear and cool, and it goes into the jar much as it comes out of the leaf.</p>
+          <dl class="facts">
+            <div class="fact">
+              <dt>Cut</dt>
+              <dd>Outer leaves, by hand</dd>
+            </div>
+            <div class="fact">
+              <dt>Plants</dt>
+              <dd>Four years old or more</dd>
+            </div>
+            <div class="fact">
+              <dt>Filled</dt>
+              <dd>The day the leaf is cut</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="chapter" id="leaf">
+          <header class="chapter__head">
+            <span class="chapter__num">01</span>
+            <h2 class="chapter__title">Leaf</h2>
+            <span class="chapter__count">The farm above Guinate</span>
+          </header>
+          <div class="looks">
+            <figure class="look look--c">
+              <div class="look__img goo-picture"><img src="img/aloe/field.webp" width="1100" height="614" alt="Rows of aloe plants in black volcanic soil under a grey sky" /></div>
+              <figcaption class="look__caption">The north field, after a rare winter rain</figcaption>
+            </figure>
+            <figure class="look look--l">
+              <div class="look__img goo-picture"><img src="img/aloe/leaf.webp" width="1100" height="614" alt="A cut aloe leaf on pale stone, its clear gel showing" /></div>
+              <figcaption class="look__caption">An outer leaf, cut at seven in the morning</figcaption>
+            </figure>
+            <figure class="look look--pr">
+              <div class="look__img goo-picture"><img src="img/aloe/lucia.webp" width="1100" height="614" alt="A woman with dark hair in a white shirt among aloe plants" /></div>
+              <figcaption class="look__caption">Lucía, who opens every leaf by hand</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="chapter" id="skin">
+          <header class="chapter__head">
+            <span class="chapter__num">02</span>
+            <h2 class="chapter__title">Skin</h2>
+            <span class="chapter__count">How we use it at home</span>
+          </header>
+          <dl class="facts facts--notes">
+            <div class="fact">
+              <dt>When</dt>
+              <dd>Morning and night, on clean, damp skin</dd>
+            </div>
+            <div class="fact">
+              <dt>How much</dt>
+              <dd>About a pea’s worth for the face and neck</dd>
+            </div>
+            <div class="fact">
+              <dt>Feel</dt>
+              <dd>Cool at first, then gone within a minute</dd>
+            </div>
+          </dl>
+          <div class="looks">
+            <div class="look-pair">
+              <figure class="look">
+                <div class="look__img goo-picture"><img src="img/aloe/applying.webp" width="1100" height="614" alt="A woman with her eyes closed pressing gel into her cheek with her fingertips" /></div>
+                <figcaption class="look__caption">A thin layer, pressed in with the fingertips</figcaption>
+              </figure>
+              <figure class="look">
+                <div class="look__img goo-picture"><img src="img/aloe/after.webp" width="1100" height="614" alt="A woman in a white shirt looking out of a window in soft daylight" /></div>
+                <figcaption class="look__caption">A minute later, nothing left on the skin</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="chapter" id="shop">
+          <header class="chapter__head">
+            <span class="chapter__num">03</span>
+            <h2 class="chapter__title">Shop</h2>
+            <span class="chapter__count">Filled Monday, sent Tuesday</span>
+          </header>
+          <div class="looks">
+            <div class="jars">
+              <figure class="look jar">
+                <div class="look__img goo-picture"><img src="img/aloe/jar.webp" width="1024" height="765" alt="A small clear jar of aloe gel on a stone block beside a piece of aloe leaf" /></div>
+                <figcaption class="jar__info">
+                  <span class="jar__name">Leaf gel, jar · 150 ml<br /><span class="jar__price">€18</span></span>
+                  <button class="buy" type="button">Add to bag</button>
+                </figcaption>
+              </figure>
+              <figure class="look jar">
+                <div class="look__img goo-picture"><img src="img/aloe/tube.webp" width="1024" height="765" alt="A white tube of aloe gel on a stone block beside a piece of aloe leaf" /></div>
+                <figcaption class="jar__info">
+                  <span class="jar__name">Leaf gel, tube · 60 ml<br /><span class="jar__price">€9</span></span>
+                  <button class="buy" type="button">Add to bag</button>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <footer class="end">
+          <p class="end__name">Guinate</p>
+          <p>Aloe gel from one small farm in the north of Lanzarote, cut by hand</p>
+          <a href="#aloe" class="end__top">Back to the top</a>
+        </footer>
+
+        <nav class="others" aria-label="More variations">
+          <p class="others__label">More variations</p>
+          <a class="other" href="index.html">
+            <div class="other__img goo-picture" data-focus-x="0.68" style="--focus-x: 68%"><img src="img/gel/hero.webp" width="1376" height="768" alt="" /></div>
+            <span class="other__name">Jelly</span>
+          </a>
+          <a class="other" href="index2.html">
+            <div class="other__img goo-picture" data-focus-x="0.72" style="--focus-x: 72%"><img src="img/honey/hero.webp" width="1376" height="768" alt="" /></div>
+            <span class="other__name">Honey</span>
+          </a>
+          <a class="other" href="index4.html">
+            <div class="other__img goo-picture" data-focus-x="0.72" style="--focus-x: 72%"><img src="img/caramel/hero.webp" width="1376" height="768" alt="" /></div>
+            <span class="other__name">Caramel</span>
+          </a>
+        </nav>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/gsap.min.js"></script>
+  <script src="js/ScrollTrigger.min.js"></script>
+  <script src="js/ScrollSmoother.min.js"></script>
+  <script src="js/SplitText.min.js"></script>
+  <script type="module" src="js/index.js"></script>
+  <!-- Added on the live server only, leave commented out in the repo -->
+  <!--script src="https://tympanus.net/codrops/adpacks/cda_sponsor.js"></script-->
+</body>
+
+</html>

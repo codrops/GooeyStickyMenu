@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honey Gooey Sticky Menu | Codrops</title>
+  <meta name="description" content="The sticky menu as amber honey: thick, slow strands that run very thin before they break. Made with WebGL and GSAP. Part of Codrops' Gooey Sticky Menu." />
+  <link rel="canonical" href="https://tympanus.net/Demos/GooeyStickyMenu/index2.html" />
+  <meta name="theme-color" content="#c7a059" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Codrops" />
+  <meta property="og:title" content="Honey Gooey Sticky Menu | Codrops" />
+  <meta property="og:description" content="The sticky menu as amber honey: thick, slow strands that run very thin before they break. Made with WebGL and GSAP. Part of Codrops' Gooey Sticky Menu." />
+  <meta property="og:url" content="https://tympanus.net/Demos/GooeyStickyMenu/index2.html" />
+  <meta property="og:image" content="https://tympanus.net/Demos/GooeyStickyMenu/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="A liquid menu pulling strands from a photograph as the page scrolls" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@codrops" />
+  <meta name="twitter:creator" content="@codrops" />
+  <meta name="twitter:title" content="Honey Gooey Sticky Menu | Codrops" />
+  <meta name="twitter:description" content="The sticky menu as amber honey: thick, slow strands that run very thin before they break. Made with WebGL and GSAP. Part of Codrops' Gooey Sticky Menu." />
+  <meta name="twitter:image" content="https://tympanus.net/Demos/GooeyStickyMenu/og-image.jpg" />
+  <meta name="twitter:image:alt" content="A liquid menu pulling strands from a photograph as the page scrolls" />
+  <link rel="icon" type="image/svg+xml" href="https://tympanus.net/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="https://tympanus.net/favicon/favicon.ico" />
+  <link rel="preload" href="fonts/HostGrotesk-Latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="img/honey/hero.webp" as="image" type="image/webp" fetchpriority="high" />
+  <link rel="stylesheet" type="text/css" href="css/base.css" />
+  <link rel="stylesheet" type="text/css" href="css/shop.css" />
+  <link rel="stylesheet" type="text/css" href="css/honey.css" />
+  <!-- Added on the live server only, leave commented out in the repo -->
+  <!--script src="//tympanus.net/codrops/adpacks/analytics.js"></script-->
+</head>
+
+<body class="loading" data-material="honey">
+  <nav class="menu" aria-label="Rosemary honey">
+    <a class="menu__link" href="#honey">Honey</a>
+    <a class="menu__link" href="#origin">Origin</a>
+    <a class="menu__link" href="#taste">Taste</a>
+    <a class="menu__link" href="#order">Order</a>
+  </nav>
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+      <canvas class="goo" aria-hidden="true"></canvas>
+      <main>
+        <header class="frame">
+          <div class="frame__head">
+            <h1 class="frame__title">Gooey Sticky Menu</h1>
+            <nav class="frame__links" aria-label="Demo links">
+              <a href="https://tympanus.net/codrops/hub/">All demos</a>
+              <a href="https://github.com/codrops/GooeyStickyMenu">GitHub</a>
+            </nav>
+          </div>
+          <nav class="frame__demos" aria-label="Variations">
+            <span class="frame__demos-label">Variations</span>
+            <a class="frame__demo" href="index.html">Jelly</a>
+            <span class="frame__demo frame__demo--current" aria-current="page">Honey</span>
+            <a class="frame__demo" href="index3.html">Aloe</a>
+            <a class="frame__demo" href="index4.html">Caramel</a>
+          </nav>
+          <nav class="frame__tags" aria-label="Tags">
+            <a href="https://tympanus.net/codrops/hub/tag/gooey/">#gooey</a>
+            <a href="https://tympanus.net/codrops/hub/tag/menu/">#menu</a>
+            <a href="https://tympanus.net/codrops/hub/tag/scroll/">#scroll</a>
+            <a href="https://tympanus.net/codrops/hub/tag/webgl/">#webgl</a>
+            <a href="https://tympanus.net/codrops/hub/tag/glsl/">#glsl</a>
+            <a href="https://tympanus.net/codrops/hub/tag/gsap/">#gsap</a>
+          </nav>
+        </header>
+
+        <section class="hero" id="honey">
+          <div class="hero__picture goo-picture" data-parallax data-focus-x="0.72" style="--focus-x: 72%">
+            <img src="img/honey/hero.webp" width="1376" height="768" alt="A clear jar of amber rosemary honey glowing in the morning sun on a limestone ledge, flowering rosemary beside it and a dry hillside behind" />
+          </div>
+          <div class="hero__info">
+            <h2 class="hero__name">Rosemary<br />Honey</h2>
+            <p class="hero__about">Raw, from the hills<br />above Alva&nbsp;· 250&nbsp;g</p>
+            <div class="hero__buy">
+              <p>€16</p>
+              <a class="buy" href="#order">Add to bag</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="statement" aria-label="The honey">
+          <p class="statement__text">Rosemary flowers at the end of winter, before almost anything else on the dry hills. The bees work it for a few weeks, and the honey they bring back is pale and clear, with a quiet herbal warmth. In the cool of the cellar it slowly turns to a fine white cream.</p>
+          <dl class="facts">
+            <div class="fact">
+              <dt>Harvest</dt>
+              <dd>March, once a year</dd>
+            </div>
+            <div class="fact">
+              <dt>Flowers</dt>
+              <dd>Wild rosemary</dd>
+            </div>
+            <div class="fact">
+              <dt>Kept</dt>
+              <dd>Raw, never heated</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="chapter" id="origin">
+          <header class="chapter__head">
+            <span class="chapter__num">01</span>
+            <h2 class="chapter__title">Origin</h2>
+            <span class="chapter__count">The hills above Alva</span>
+          </header>
+          <div class="looks">
+            <figure class="look look--c">
+              <div class="look__img goo-picture"><img src="img/honey/hillside.webp" width="1100" height="614" alt="A dry limestone hillside covered in flowering rosemary at dawn, mist in the valley behind" /></div>
+              <figcaption class="look__caption">The hillside in early March</figcaption>
+            </figure>
+            <figure class="look look--l">
+              <div class="look__img goo-picture"><img src="img/honey/hives.webp" width="1100" height="614" alt="Old white wooden beehives among rosemary bushes on a stony hillside in the morning haze" /></div>
+              <figcaption class="look__caption">Forty hives, moved up the hill in February</figcaption>
+            </figure>
+            <figure class="look look--pr">
+              <div class="look__img goo-picture"><img src="img/honey/flowers.webp" width="1100" height="614" alt="A branch of rosemary in flower, small pale blue flowers against pale stone" /></div>
+              <figcaption class="look__caption">Salvia rosmarinus, flowering</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="chapter" id="taste">
+          <header class="chapter__head">
+            <span class="chapter__num">02</span>
+            <h2 class="chapter__title">Taste</h2>
+            <span class="chapter__count">Notes from the cellar</span>
+          </header>
+          <dl class="facts facts--notes">
+            <div class="fact">
+              <dt>Colour</dt>
+              <dd>Pale straw when poured, white once it sets</dd>
+            </div>
+            <div class="fact">
+              <dt>Taste</dt>
+              <dd>Gently sweet, resin and a little dry herb at the end</dd>
+            </div>
+            <div class="fact">
+              <dt>With</dt>
+              <dd>Fresh cheese, warm bread, a cup of sage tea</dd>
+            </div>
+          </dl>
+          <div class="looks">
+            <div class="look-pair">
+              <figure class="look">
+                <div class="look__img goo-picture"><img src="img/honey/spoon.webp" width="1100" height="614" alt="Golden honey running off a wooden spoon in a slow ribbon" /></div>
+                <figcaption class="look__caption">Poured, before it sets</figcaption>
+              </figure>
+              <figure class="look">
+                <div class="look__img goo-picture"><img src="img/honey/cheese.webp" width="1100" height="614" alt="A round of fresh goat cheese drizzled with honey on a plate, with bread and a sprig of rosemary on pale stone" /></div>
+                <figcaption class="look__caption">With fresh cheese and bread</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="chapter" id="order">
+          <header class="chapter__head">
+            <span class="chapter__num">03</span>
+            <h2 class="chapter__title">Order</h2>
+            <span class="chapter__count">Shipped in March and October</span>
+          </header>
+          <div class="looks">
+            <div class="jars">
+              <figure class="look jar">
+                <div class="look__img goo-picture"><img src="img/honey/jar-small.webp" width="1024" height="762" alt="A small round jar of amber honey with a gold lid on a pale stone slab" /></div>
+                <figcaption class="jar__info">
+                  <span class="jar__name">Small jar · 250 g<br /><span class="jar__price">€16</span></span>
+                  <button class="buy" type="button">Add to bag</button>
+                </figcaption>
+              </figure>
+              <figure class="look jar">
+                <div class="look__img goo-picture"><img src="img/honey/jar-large.webp" width="1024" height="762" alt="A tall jar of amber honey with a gold lid on a pale stone slab" /></div>
+                <figcaption class="jar__info">
+                  <span class="jar__name">Large jar · 500 g<br /><span class="jar__price">€28</span></span>
+                  <button class="buy" type="button">Add to bag</button>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <footer class="end">
+          <p class="end__name">Alva</p>
+          <p>Rosemary honey from the hills above Alva, a few hundred jars a year</p>
+          <a href="#honey" class="end__top">Back to the top</a>
+        </footer>
+
+        <nav class="others" aria-label="More variations">
+          <p class="others__label">More variations</p>
+          <a class="other" href="index.html">
+            <div class="other__img goo-picture" data-focus-x="0.68" style="--focus-x: 68%"><img src="img/gel/hero.webp" width="1376" height="768" alt="" /></div>
+            <span class="other__name">Jelly</span>
+          </a>
+          <a class="other" href="index3.html">
+            <div class="other__img goo-picture" data-focus-x="0.64" style="--focus-x: 64%"><img src="img/aloe/hero.webp" width="1376" height="768" alt="" /></div>
+            <span class="other__name">Aloe</span>
+          </a>
+          <a class="other" href="index4.html">
+            <div class="other__img goo-picture" data-focus-x="0.72" style="--focus-x: 72%"><img src="img/caramel/hero.webp" width="1376" height="768" alt="" /></div>
+            <span class="other__name">Caramel</span>
+          </a>
+        </nav>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/gsap.min.js"></script>
+  <script src="js/ScrollTrigger.min.js"></script>
+  <script src="js/ScrollSmoother.min.js"></script>
+  <script src="js/SplitText.min.js"></script>
+  <script type="module" src="js/index.js"></script>
+  <!-- Added on the live server only, leave commented out in the repo -->
+  <!--script src="https://tympanus.net/codrops/adpacks/cda_sponsor.js"></script-->
+</body>
+
+</html>

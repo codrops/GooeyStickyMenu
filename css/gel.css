@@ -1,0 +1,14 @@
+/* Variation 01, cerise jelly gel: its colours, over css/shop.css; the section words in the gel's cherry */
+
+:root {
+  --color-bg: #eef0f1;
+  --color-text: #17191c;
+  --color-muted: #6a6e74;
+  --color-title: #a3122f;
+  --color-link: #17191c;
+  --color-link-hover: #000;
+  --color-rule: rgb(95 101 110 / 45%);
+  /* the other variations' ground: very dark and not black, so the clear red menu over it still
+     shows some red */
+  --color-others: #1f2224;
+}

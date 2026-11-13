@@ -1,0 +1,15 @@
+/* Variation 02, rosemary honey: its colours, over css/shop.css */
+
+:root {
+  /* the ground: lighter at the top of the screen, and at the bottom, where the menu is, the colour
+     the honey's is worked out over (css/shop.css) */
+  --color-bg-top: #e0d1b1;
+  --color-bg: #c7a059;
+  --color-text: #1e1b16;
+  /* dark enough to read at 15px on the darker part of the ground */
+  --color-muted: #40372a;
+  --color-title: #1e1b16;
+  --color-link: #1e1b16;
+  --color-link-hover: #000;
+  --color-rule: rgb(102 115 95 / 45%);
+}

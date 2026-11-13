@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gooey Sticky Menu | Codrops</title>
+  <meta name="description" content="A sticky menu of red jelly gel that clings to pictures and letters as you scroll, pulling strands that stretch and snap. Made with WebGL and GSAP." />
+  <link rel="canonical" href="https://tympanus.net/Demos/GooeyStickyMenu/" />
+  <meta name="theme-color" content="#eef0f1" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Codrops" />
+  <meta property="og:title" content="Gooey Sticky Menu | Codrops" />
+  <meta property="og:description" content="A sticky menu of red jelly gel that clings to pictures and letters as you scroll, pulling strands that stretch and snap. Made with WebGL and GSAP." />
+  <meta property="og:url" content="https://tympanus.net/Demos/GooeyStickyMenu/" />
+  <meta property="og:image" content="https://tympanus.net/Demos/GooeyStickyMenu/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="A liquid menu pulling strands from a photograph as the page scrolls" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@codrops" />
+  <meta name="twitter:creator" content="@codrops" />
+  <meta name="twitter:title" content="Gooey Sticky Menu | Codrops" />
+  <meta name="twitter:description" content="A sticky menu of red jelly gel that clings to pictures and letters as you scroll, pulling strands that stretch and snap. Made with WebGL and GSAP." />
+  <meta name="twitter:image" content="https://tympanus.net/Demos/GooeyStickyMenu/og-image.jpg" />
+  <meta name="twitter:image:alt" content="A liquid menu pulling strands from a photograph as the page scrolls" />
+  <link rel="icon" type="image/svg+xml" href="https://tympanus.net/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="https://tympanus.net/favicon/favicon.ico" />
+  <link rel="preload" href="fonts/HostGrotesk-Latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="img/gel/hero.webp" as="image" type="image/webp" fetchpriority="high" />
+  <link rel="stylesheet" type="text/css" href="css/base.css" />
+  <link rel="stylesheet" type="text/css" href="css/shop.css" />
+  <link rel="stylesheet" type="text/css" href="css/gel.css" />
+  <!-- Added on the live server only, leave commented out in the repo -->
+  <!--script src="//tympanus.net/codrops/adpacks/analytics.js"></script-->
+</head>
+
+<body class="loading" data-material="jelly">
+  <nav class="menu" aria-label="Cerise jelly gel">
+    <a class="menu__link" href="#gel">Gel</a>
+    <a class="menu__link" href="#glass">Glass</a>
+    <a class="menu__link" href="#cure">Cure</a>
+    <a class="menu__link" href="#shop">Shop</a>
+  </nav>
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+      <canvas class="goo" aria-hidden="true"></canvas>
+      <main>
+        <header class="frame">
+          <div class="frame__head">
+            <h1 class="frame__title">Gooey Sticky Menu</h1>
+            <nav class="frame__links" aria-label="Demo links">
+              <a href="https://tympanus.net/codrops/hub/">All demos</a>
+              <a href="https://github.com/codrops/GooeyStickyMenu">GitHub</a>
+            </nav>
+          </div>
+          <nav class="frame__demos" aria-label="Variations">
+            <span class="frame__demos-label">Variations</span>
+            <span class="frame__demo frame__demo--current" aria-current="page">Jelly</span>
+            <a class="frame__demo" href="index2.html">Honey</a>
+            <a class="frame__demo" href="index3.html">Aloe</a>
+            <a class="frame__demo" href="index4.html">Caramel</a>
+          </nav>
+          <nav class="frame__tags" aria-label="Tags">
+            <a href="https://tympanus.net/codrops/hub/tag/gooey/">#gooey</a>
+            <a href="https://tympanus.net/codrops/hub/tag/menu/">#menu</a>
+            <a href="https://tympanus.net/codrops/hub/tag/scroll/">#scroll</a>
+            <a href="https://tympanus.net/codrops/hub/tag/webgl/">#webgl</a>
+            <a href="https://tympanus.net/codrops/hub/tag/glsl/">#glsl</a>
+            <a href="https://tympanus.net/codrops/hub/tag/gsap/">#gsap</a>
+          </nav>
+        </header>
+
+        <section class="hero" id="gel">
+          <div class="hero__picture goo-picture" data-parallax data-focus-x="0.68" style="--focus-x: 68%">
+            <img src="img/gel/hero.webp" width="1376" height="768" alt="A small bottle of sheer cherry gel polish on a grey stone ledge, its white brush cap lying beside it with a bead of red gel on the brush" />
+          </div>
+          <div class="hero__info">
+            <h2 class="hero__name">Cerise<br />Gel</h2>
+            <p class="hero__about">Sheer cherry gel polish,<br />cured under the lamp&nbsp;· 10&nbsp;ml</p>
+            <div class="hero__buy">
+              <p>€18</p>
+              <a class="buy" href="#shop">Add to bag</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="statement" aria-label="The gel">
+          <p class="statement__text">Cerise Jelly is a sheer gel, red the way glass is red when you hold it to the light. One coat lets the nail show through; a second deepens it to the colour of a ripe cherry. Each coat sets under the lamp in a minute, and the shine keeps until the nail grows out, then soaks off in a bowl of acetone in about ten minutes.</p>
+          <dl class="facts">
+            <div class="fact">
+              <dt>Finish</dt>
+              <dd>Sheer, high gloss</dd>
+            </div>
+            <div class="fact">
+              <dt>Wear</dt>
+              <dd>Two to three weeks</dd>
+            </div>
+            <div class="fact">
+              <dt>Made</dt>
+              <dd>In small batches, by hand</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="chapter" id="glass">
+          <header class="chapter__head">
+            <span class="chapter__num">01</span>
+            <h2 class="chapter__title">Glass</h2>
+            <span class="chapter__count">Mixed and poured in the studio</span>
+          </header>
+          <div class="looks">
+            <figure class="look look--c">
+              <div class="look__img goo-picture"><img src="img/gel/drop.webp" width="1100" height="614" alt="A drop of clear gel falling from a brush into an open bottle" /></div>
+              <figcaption class="look__caption">The clear top coat, one drop to a nail</figcaption>
+            </figure>
+            <figure class="look look--l">
+              <div class="look__img goo-picture"><img src="img/gel/bottles.webp" width="1100" height="614" alt="A row of small bottles of clear gel with white caps on a stone bench, one open with its brush lying beside it" /></div>
+              <figcaption class="look__caption">Bottled by hand, one at a time</figcaption>
+            </figure>
+            <figure class="look look--pr">
+              <div class="look__img goo-picture"><img src="img/gel/bare.webp" width="1100" height="614" alt="A hand resting on white linen, its nails bare" /></div>
+              <figcaption class="look__caption">Bare nails, before the first coat</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="chapter" id="cure">
+          <header class="chapter__head">
+            <span class="chapter__num">02</span>
+            <h2 class="chapter__title">Cure</h2>
+            <span class="chapter__count">Three thin coats, one lamp</span>
+          </header>
+          <dl class="facts facts--notes">
+            <div class="fact">
+              <dt>Layers</dt>
+              <dd>A thin base, one coat of cerise or two, the top</dd>
+            </div>
+            <div class="fact">
+              <dt>Lamp</dt>
+              <dd>Sixty seconds under LED, two minutes under UV</dd>
+            </div>
+            <div class="fact">
+              <dt>Off</dt>
+              <dd>File away the shine, then ten minutes in acetone</dd>
+            </div>
+          </dl>
+          <div class="looks">
+            <div class="look-pair">
+              <figure class="look">
+                <div class="look__img goo-picture"><img src="img/gel/lamp.webp" width="1100" height="614" alt="A hand under a small white nail lamp, its light glowing blue" /></div>
+                <figcaption class="look__caption">A minute under the lamp, one hand at a time</figcaption>
+              </figure>
+              <figure class="look">
+                <div class="look__img goo-picture"><img src="img/gel/brushing.webp" width="1100" height="614" alt="A fine brush laying a clear top coat over cherry red nails" /></div>
+                <figcaption class="look__caption">The last coat, brushed thin to the edge</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="chapter" id="shop">
+          <header class="chapter__head">
+            <span class="chapter__num">03</span>
+            <h2 class="chapter__title">Shop</h2>
+            <span class="chapter__count">Bottles leave the studio on Fridays</span>
+          </header>
+          <div class="looks">
+            <div class="jars">
+              <figure class="look jar">
+                <div class="look__img goo-picture"><img src="img/gel/single.webp" width="1024" height="572" alt="A small bottle of sheer cherry gel with a white cap on a stone block" /></div>
+                <figcaption class="jar__info">
+                  <span class="jar__name">Cerise Jelly · 10 ml<br /><span class="jar__price">€18</span></span>
+                  <button class="buy" type="button">Add to bag</button>
+                </figcaption>
+              </figure>
+              <figure class="look jar">
+                <div class="look__img goo-picture"><img src="img/gel/pair.webp" width="1024" height="572" alt="A bottle of sheer cherry gel and a bottle of clear top coat on a stone block" /></div>
+                <figcaption class="jar__info">
+                  <span class="jar__name">Cerise and a clear top · 2 × 10 ml<br /><span class="jar__price">€32</span></span>
+                  <button class="buy" type="button">Add to bag</button>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <footer class="end">
+          <p class="end__name">Vael</p>
+          <p>Sheer gel polish, mixed and poured by hand in one small studio</p>
+          <a href="#gel" class="end__top">Back to the top</a>
+        </footer>
+
+        <nav class="others" aria-label="More variations">
+          <p class="others__label">More variations</p>
+          <a class="other" href="index2.html">
+            <div class="other__img goo-picture" data-focus-x="0.72" style="--focus-x: 72%"><img src="img/honey/hero.webp" width="1376" height="768" alt="" /></div>
+            <span class="other__name">Honey</span>
+          </a>
+          <a class="other" href="index3.html">
+            <div class="other__img goo-picture" data-focus-x="0.64" style="--focus-x: 64%"><img src="img/aloe/hero.webp" width="1376" height="768" alt="" /></div>
+            <span class="other__name">Aloe</span>
+          </a>
+          <a class="other" href="index4.html">
+            <div class="other__img goo-picture" data-focus-x="0.72" style="--focus-x: 72%"><img src="img/caramel/hero.webp" width="1376" height="768" alt="" /></div>
+            <span class="other__name">Caramel</span>
+          </a>
+        </nav>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/gsap.min.js"></script>
+  <script src="js/ScrollTrigger.min.js"></script>
+  <script src="js/ScrollSmoother.min.js"></script>
+  <script src="js/SplitText.min.js"></script>
+  <script type="module" src="js/index.js"></script>
+  <!-- Added on the live server only, leave commented out in the repo -->
+  <!--script src="https://tympanus.net/codrops/adpacks/cda_sponsor.js"></script-->
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+/* Variation 04, salted caramel: its colours, over css/shop.css; the section words in burnt sugar */
+
+:root {
+  /* the ground, a cold marble slab: lighter at the top of the screen, and at the bottom, where the
+     menu is, the colour the caramel's is worked out over (css/shop.css) */
+  --color-bg-top: #ece9e4;
+  --color-bg: #d9d2c8;
+  --color-text: #1f1712;
+  /* dark enough to read at 15px on the darker part of the ground */
+  --color-muted: #5a4a3c;
+  --color-title: #7a3b10;
+  --color-link: #1f1712;
+  --color-link-hover: #000;
+  --color-rule: rgb(120 100 84 / 45%);
+}

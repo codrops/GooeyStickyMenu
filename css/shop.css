@@ -1,0 +1,355 @@
+/* The shop page every variation is: a product's hero photograph, a statement, three sections and a
+   footer, over css/base.css. Each page's colours are in its own stylesheet (css/<material>.css).
+   The section words are the titles the liquid holds on to. */
+
+/* The ground: lighter at the top of the screen (--color-bg-top), darker at the bottom (--color-bg),
+   where the menu is and its colour is worked out over; 65% is where it's halfway between the two,
+   so the top stays light for longer. A page without --color-bg-top has a flat ground. Fixed on its
+   own layer, so scrolling never repaints it. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(var(--color-bg-top, var(--color-bg)), 65%, var(--color-bg));
+}
+
+/* The frame and the settings button read light while they're over the hero's photograph */
+.frame {
+  --color-frame: rgb(255 255 255 / 78%);
+  --color-frame-strong: #fff;
+  --color-frame-pill: rgb(255 255 255 / 16%);
+  --color-frame-pill-hover: rgb(255 255 255 / 26%);
+}
+
+.is-over-hero .panel__toggle {
+  color: rgb(255 255 255 / 78%);
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+/* "Add to bag" */
+.buy {
+  display: inline-block;
+  padding: 0 var(--s-15);
+  border: 0;
+  border-radius: var(--s-30);
+  font: inherit;
+  line-height: var(--s-30);
+  white-space: nowrap;
+  color: var(--color-bg);
+  background: var(--color-text);
+  cursor: pointer;
+  transition: opacity 0.3s;
+
+  &:hover {
+    color: var(--color-bg);
+    text-decoration: none;
+    opacity: 0.8;
+  }
+}
+
+/* The hero: the photograph fills the first screen (the canvas draws it, with its parallax); the name,
+   what the product is and the buy line sit over it, above the canvas, in one column at the bottom
+   left. The buy line is as tall as the menu and level with it, beside it: narrow enough to clear the
+   menu down to the phone layout, where the whole column sits above the menu. */
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 600px;
+}
+
+.hero__picture {
+  position: absolute;
+  inset: 0;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* where the product is, kept in view when a narrow screen crops the sides */
+    object-position: var(--focus-x, 50%) 50%;
+  }
+}
+
+.hero__info {
+  position: absolute;
+  z-index: 16;
+  left: var(--page-padding);
+  bottom: var(--s-30);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #fff;
+}
+
+.hero__name {
+  margin: 0 0 0 -0.065em;
+  font-size: clamp(64px, 10.8vw, 240px);
+  font-weight: 500;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: #fff;
+}
+
+/* what the product is, in two lines under the name; nearer the buy line than the name, since the
+   price and the button sit in the middle of a line as tall as the menu */
+.hero__about {
+  margin: calc(var(--s-30) + var(--s-15)) 0 0;
+  font-size: 30px;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+
+.hero__buy {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--s-15) + var(--s-5));
+  height: var(--s-60);
+  margin-top: var(--s-15);
+
+  p {
+    margin: 0;
+  }
+
+  .buy {
+    color: var(--color-text);
+    background: #fff;
+  }
+}
+
+/* The statement and the small facts under it */
+.statement {
+  padding: var(--s-180) var(--page-padding) 0;
+}
+
+.statement__text {
+  max-width: 860px;
+  margin: 0;
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.035em;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-30);
+  margin: var(--s-60) 0 0;
+
+  dt {
+    color: var(--color-muted);
+  }
+
+  dd {
+    margin: var(--s-5) 0 0;
+  }
+}
+
+.fact {
+  width: 210px;
+  padding-top: var(--s-15);
+  border-top: 1px solid var(--color-rule);
+}
+
+/* The sections: a small number, one big word the honey holds on to, a small line */
+.chapter__title {
+  margin: 0;
+  color: var(--color-title);
+  font-size: clamp(96px, 20.8vw, 380px);
+  font-weight: 500;
+  line-height: 0.833;
+  letter-spacing: -0.05em;
+  text-transform: none;
+}
+
+.chapter__num,
+.chapter__count {
+  padding-bottom: var(--s-15);
+  color: var(--color-muted);
+}
+
+.chapter__head + .looks,
+.facts--notes {
+  margin-top: var(--s-90);
+}
+
+.facts--notes {
+  padding: 0 var(--page-padding);
+
+  .fact {
+    width: 330px;
+  }
+
+  + .looks {
+    margin-top: var(--s-60);
+  }
+}
+
+.look__caption {
+  color: var(--color-muted);
+}
+
+/* The two jars, side by side across the middle, each with its buy line */
+.jars {
+  display: flex;
+  justify-content: center;
+  gap: var(--s-30);
+
+  .look {
+    width: 420px;
+    margin: 0;
+  }
+
+  .look__img {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.jar__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-15);
+  margin-top: var(--s-15);
+}
+
+.jar__price {
+  color: var(--color-muted);
+}
+
+.end {
+  align-items: center;
+  padding: var(--s-180) var(--page-padding) var(--s-120);
+
+  p {
+    color: var(--color-muted);
+  }
+
+  .end__name {
+    font-size: 38px;
+    font-weight: 500;
+    line-height: 1.18;
+    letter-spacing: -0.035em;
+    color: var(--color-text);
+  }
+}
+
+.end__top {
+  text-decoration: underline;
+}
+
+/* The last thing on the page: the other variations, on black (--color-others: a page can have its
+   own very dark colour) so nobody misses them, in one row of three, each its hero photograph,
+   smaller, with its name under it, lighter until hovered. Pictures the liquid holds on to, like every
+   picture on the page; the canvas knows this ground's colour (js/index.js), so the liquid over it is
+   coloured as it would be over that. The colour runs on below the page's end, so no sliver of the
+   page's own ground shows under it when the page's height ends on a fraction of a pixel, and it's
+   what shows when the browser bounces past the end. */
+:root {
+  --color-others: #000;
+}
+
+html {
+  background: var(--color-others);
+}
+
+.others {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-30);
+  padding: var(--s-90) var(--page-padding) var(--s-120);
+  background: var(--color-others);
+  box-shadow: 0 var(--s-30) 0 var(--color-others);
+  color: #fff;
+}
+
+.others__label {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: rgb(255 255 255 / 62%);
+}
+
+.other {
+  color: rgb(255 255 255 / 78%);
+
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.other__img {
+  aspect-ratio: 16 / 9;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--focus-x, 50%) 50%;
+  }
+}
+
+.other__name {
+  display: block;
+  margin-top: var(--s-15);
+}
+
+@media screen and (max-width: 53em) {
+  /* the menu takes most of the width at the bottom, so the whole column sits above it, 60px clear
+     of its top */
+  .hero__info {
+    bottom: calc(var(--s-30) + var(--s-60) + var(--s-60));
+  }
+
+  .hero__name {
+    font-size: 18vw;
+  }
+
+  .hero__about {
+    margin-top: var(--s-30);
+    font-size: clamp(18px, 5.6vw, 22px);
+  }
+
+  .hero__buy {
+    height: var(--s-30);
+    margin-top: var(--s-15);
+  }
+
+  .statement__text {
+    font-size: 24px;
+  }
+
+  .fact,
+  .facts--notes .fact {
+    width: 100%;
+  }
+
+  .jars .look {
+    width: calc((100% - var(--s-15)) / 2);
+  }
+
+  .jars {
+    gap: var(--s-15);
+  }
+
+  .jar__info {
+    flex-wrap: wrap;
+  }
+
+  .end {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-15);
+  }
+
+  .others {
+    gap: var(--s-15);
+  }
+}

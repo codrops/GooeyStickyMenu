@@ -1,0 +1,628 @@
+@font-face {
+  font-family: 'Host Grotesk';
+  src: url(../fonts/HostGrotesk-Latin.woff2) format('woff2');
+  font-weight: 300 800;
+  font-display: swap;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  /* 15px at the browser default, still scales with the visitor's font size setting */
+  font-size: 93.75%;
+  --color-text: #503717;
+  --color-bg: #eaeaea;
+  --color-title: #000;
+  --color-link: #503717;
+  --color-link-hover: #000;
+  --color-menu: #f6f5f2;
+  --color-menu-link: #503717;
+  --color-menu-link-hover: #000;
+  --font-text: 'Host Grotesk', system-ui, sans-serif;
+  --font-frame: 'Host Grotesk', system-ui, sans-serif;
+  --color-frame: rgb(30 22 14 / 62%);
+  --color-frame-strong: #1e160e;
+  --color-frame-pill: rgb(30 22 14 / 7%);
+  --color-frame-pill-hover: rgb(30 22 14 / 12%);
+  /* the spacing scale: every padding, gap and margin is one of these */
+  --s-5: 5px; /* only inside a component: between the frame's lines */
+  --s-15: 15px;
+  --s-30: 30px;
+  --s-60: 60px;
+  --s-90: 90px;
+  --s-120: 120px;
+  --s-180: 180px;
+  --s-240: 240px;
+  --page-padding: var(--s-30);
+  /* half the menu's width, measured by js/index.js once the fonts are in */
+  --menu-hw: 160px;
+  /* A look is wider than the menu, so the menu's ends sit inside a look it crosses,
+     and never so wide that a pair with the menu between them leaves the page */
+  --look-w: min(calc(var(--menu-hw) * 2 + var(--s-180)), calc((100vw - var(--menu-hw) * 2 - var(--s-30) - var(--s-15)) / 2));
+}
+
+body {
+  margin: 0;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  font-family: var(--font-text);
+  font-size: 1rem;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* The page loader from the CodropsTemplate: the page's ground with a hairline drawing itself in the
+   middle, until js/index.js has the fonts and every image and takes the "loading" class off the body */
+@media (scripting: enabled) {
+  .loading {
+    &::before,
+    &::after {
+      content: '';
+      position: fixed;
+      z-index: 10000;
+    }
+
+    &::before {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--color-bg);
+    }
+
+    &::after {
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 1px;
+      margin: 0 0 0 -50px;
+      background: var(--color-link);
+      animation: loaderAnim 1.5s ease-in-out infinite alternate forwards;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading::after {
+    animation: none;
+  }
+}
+
+@keyframes loaderAnim {
+  0% {
+    transform: scaleX(0);
+    transform-origin: 0% 50%;
+  }
+
+  50% {
+    transform: scaleX(1);
+    transform-origin: 0% 50%;
+  }
+
+  50.1% {
+    transform: scaleX(1);
+    transform-origin: 100% 50%;
+  }
+
+  100% {
+    transform: scaleX(0);
+    transform-origin: 100% 50%;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-link);
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--color-link-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid red;
+  }
+}
+
+main {
+  position: relative;
+}
+
+/* The Codrops frame, over the top of the first screen so the hero can fill it: small text in one
+   weight, the title and "Variations" strongest, links without underlines, a lighter colour until
+   hovered; on phones in one column, on wider
+   screens on twelve, the links beside the title, the variations a little right of the middle, their
+   names in a column */
+.frame {
+  display: grid;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 16; /* above the canvas */
+  padding: var(--s-30) var(--s-15) 0;
+  gap: var(--s-5) var(--s-30);
+  justify-items: start;
+  grid-template-columns: 100%;
+  grid-template-areas:
+    'head'
+    'demos'
+    'tags';
+  font-family: var(--font-frame);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-frame);
+  pointer-events: none;
+
+  a {
+    position: relative;
+    color: var(--color-frame);
+    white-space: nowrap;
+    pointer-events: auto;
+
+    &:hover {
+      color: var(--color-frame-strong);
+      text-decoration: none;
+    }
+  }
+
+  /* the title and its links: on phones the links under the title, on wider screens beside it */
+  .frame__head {
+    grid-area: head;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-5);
+  }
+
+  .frame__title,
+  .frame__demos-label {
+    margin: 0;
+    font: inherit;
+    color: var(--color-frame-strong);
+  }
+
+  .frame__links,
+  .frame__demos,
+  .frame__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--s-15);
+  }
+
+  /* "Variations", and beside it the variations' names in a column, the first on its line: the
+     page's own name is the strong colour, the others the frame's, until hovered */
+  .frame__demos {
+    grid-area: demos;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-items: start;
+  }
+
+  .frame__demos-label {
+    grid-row: 1;
+  }
+
+  .frame__demo {
+    grid-column: 2;
+  }
+
+  .frame__demo--current {
+    color: var(--color-frame-strong);
+  }
+
+  /* the tags as pills a shade darker than the ground, a little apart from the rows above, three to a
+     line: an empty line as tall as the gap between them goes after the third */
+  .frame__tags {
+    grid-area: tags;
+    gap: 0 var(--s-5);
+    margin-top: var(--s-15);
+
+    &::after {
+      content: '';
+      order: 1;
+      width: 100%;
+      height: var(--s-5);
+    }
+
+    a:nth-child(n + 4) {
+      order: 2;
+    }
+  }
+
+  .frame__tags a {
+    padding: 2px 10px;
+    border-radius: var(--s-30);
+    background: var(--color-frame-pill);
+    transition: background-color 0.3s;
+
+    &:hover {
+      background: var(--color-frame-pill-hover);
+    }
+  }
+
+  @media screen and (min-width: 53em) {
+    padding: var(--s-30) var(--s-30) 0;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-areas:
+      'head head head head demos demos demos demos . . . .'
+      'tags tags tags tags demos demos demos demos . . . .';
+    align-items: start;
+
+    /* the links on the title's line; the pair may reach into the fifth column, which the variations,
+       centred in theirs, leave empty, and wraps under the title only where that's still too narrow */
+    .frame__head {
+      grid-column: 1 / 6;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--s-5) var(--s-30);
+    }
+
+    .frame__demos {
+      position: relative;
+      left: var(--s-15);
+      justify-self: center;
+    }
+  }
+}
+
+.chapter {
+  padding-top: var(--s-180);
+}
+
+.chapter__head {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: var(--s-30);
+  padding: 0 var(--page-padding);
+}
+
+.chapter__count {
+  justify-self: end;
+}
+
+/* The looks sit around the menu's width, so each one touches it as the page scrolls:
+   straight through it, grazing its left end, or across its right half */
+.looks {
+  position: relative;
+  margin-top: var(--s-60);
+  padding: 0 var(--page-padding);
+}
+
+.look {
+  position: relative;
+  width: var(--look-w);
+  margin: 0 0 0 calc(50% - var(--look-w) / 2 + var(--x, 0px));
+}
+
+.look--l {
+  --x: calc(-1 * (var(--menu-hw) - var(--s-15) + var(--look-w) / 2));
+}
+
+/* across the right half of the menu */
+.look--pr {
+  --x: calc(var(--look-w) / 2);
+}
+
+/* the same room between the pictures; after .look, whose margin would otherwise cancel it */
+.looks > * + * {
+  margin-top: var(--s-120);
+}
+
+.look-pair {
+  display: flex;
+  justify-content: center;
+  gap: calc(var(--menu-hw) * 2 - var(--s-30));
+
+  .look {
+    margin: 0;
+  }
+}
+
+.look__img {
+  aspect-ratio: 16 / 9;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* The canvas draws the pictures and the chapter titles while the effect runs;
+   the images and the headings stay for layout and for what they say */
+.is-goo .goo-picture img {
+  opacity: 0;
+}
+
+.is-goo .chapter__title {
+  color: transparent;
+}
+
+.look__caption {
+  margin-top: var(--s-15);
+}
+
+.end {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-30);
+  padding: var(--s-240) var(--page-padding);
+
+  p {
+    margin: 0;
+  }
+}
+
+/* The canvas sits at the top of the page, under the frame and a hero's text, over everything else;
+   js/index.js moves it down by as much as the page has scrolled, so it stays on the screen */
+.goo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 15;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* The hint that a strand can be cut: a crosshair while the mouse is near one that can (js/index.js),
+   whatever is under it */
+.is-cuttable,
+.is-cuttable * {
+  cursor: crosshair;
+}
+
+.menu {
+  position: fixed;
+  left: 50%;
+  bottom: var(--s-30);
+  z-index: 20;
+  display: flex;
+  gap: var(--s-30);
+  /* a little more room at the ends than between the labels */
+  padding: var(--s-15) calc(var(--s-30) + var(--s-15));
+  /* the labels a little heavier, to sit on the liquid */
+  font-weight: 600;
+  line-height: var(--s-30);
+  white-space: nowrap;
+  border-radius: var(--s-60);
+  background: var(--color-menu);
+  box-shadow: 0 9px 21px rgb(80 55 23 / 14%);
+  transform: translateX(-50%);
+}
+
+/* What the menu is made of: its labels, and its own colour where there's no canvas */
+[data-material='jelly'] {
+  --color-menu: #d60a22;
+  --color-menu-link: rgb(255 255 255 / 75%);
+  --color-menu-link-hover: #fff;
+}
+
+[data-material='honey'] {
+  --color-menu: #c8892c;
+  --color-menu-link: #f6e2b8;
+  --color-menu-link-hover: #fffaf0;
+}
+
+/* aloe's labels are dark: over the other variations' black ground they turn light (js/index.js) */
+[data-material='aloe'] {
+  --color-menu: #dde7cf;
+  --color-menu-link: #4a5636;
+  --color-menu-link-hover: #141c0c;
+  --color-menu-link-on-dark: rgba(255, 255, 255, 0.75);
+  --color-menu-link-hover-on-dark: #ffffff;
+}
+
+/* The caramel's labels change with its stage (js/index.js); these are for where there's no canvas */
+[data-material='caramel'] {
+  --color-menu: #b9611a;
+  --color-menu-link: rgb(255 243 220 / 75%);
+  --color-menu-link-hover: #fff3dc;
+}
+
+/* The canvas draws the menu's shape once it's running */
+.menu.is-drawn {
+  background: transparent;
+  box-shadow: none;
+}
+
+.menu__link {
+  color: var(--color-menu-link);
+
+  &:hover,
+  &[aria-current] {
+    color: var(--color-menu-link-hover);
+  }
+}
+
+/* The settings panel: its button on the frame's first line at the top right, "Settings +" to open
+   and "Settings −" to close, in the frame's type; the sliders for the effect's values open in a
+   card under it */
+.panel {
+  position: fixed;
+  top: var(--s-30);
+  right: var(--s-15);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: calc(100vw - var(--s-30));
+  max-height: calc(100svh - var(--s-240));
+  font-family: var(--font-frame);
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+
+  @media screen and (min-width: 53em) {
+    right: var(--s-30);
+    max-width: calc(100vw - var(--s-60));
+  }
+}
+
+.panel__toggle,
+.panel__button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  background: none;
+
+  &:hover {
+    color: var(--color-frame-strong);
+  }
+
+  &:focus-visible {
+    outline: 2px solid red;
+  }
+}
+
+.panel__toggle {
+  display: flex;
+  gap: 0.3em;
+  padding: 0;
+  border: 0;
+  color: var(--color-frame);
+  text-transform: capitalize;
+  pointer-events: auto;
+  transition: color 0.3s;
+
+  &::after {
+    content: '−';
+  }
+
+  &[aria-expanded='false']::after {
+    content: '+';
+  }
+}
+
+/* wide enough for every row's label, slider and value, the widest a colour's hex, so it never scrolls
+   sideways */
+.panel__body {
+  display: grid;
+  gap: var(--s-30);
+  width: 360px;
+  max-width: 100%;
+  margin-top: var(--s-15);
+  padding: var(--s-15);
+  border-radius: var(--s-15);
+  background: rgb(246 245 242 / 94%);
+  box-shadow: 0 9px 21px rgb(80 55 23 / 14%);
+  color: var(--color-text);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  pointer-events: auto;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.panel__group {
+  display: grid;
+  gap: var(--s-15);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.panel__title {
+  margin-bottom: var(--s-15);
+  padding: 0;
+  color: var(--color-title);
+}
+
+.panel__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 90px 60px;
+  align-items: center;
+  gap: var(--s-15);
+}
+
+.panel__colour {
+  width: 100%;
+  height: var(--s-15);
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.panel__range {
+  width: 100%;
+  height: var(--s-15);
+  margin: 0;
+  accent-color: var(--color-text);
+}
+
+.panel__value {
+  text-align: right;
+}
+
+.panel__actions {
+  display: flex;
+  gap: var(--s-15);
+}
+
+.panel__button {
+  padding: 0 var(--s-15);
+  line-height: var(--s-30);
+  border: 1px solid currentColor;
+  border-radius: var(--s-15);
+}
+
+@media screen and (max-width: 53em) {
+  :root {
+    --look-w: 72vw;
+  }
+
+  .chapter__head {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'title title'
+      'num count';
+    row-gap: var(--s-15);
+  }
+
+  .chapter__title {
+    grid-area: title;
+    justify-self: center;
+  }
+
+  .chapter__num {
+    grid-area: num;
+  }
+
+  .chapter__count {
+    grid-area: count;
+  }
+
+  .look--l {
+    --x: -12vw;
+  }
+
+  .look--pr {
+    --x: 7vw;
+  }
+
+  .look-pair {
+    gap: var(--s-15);
+
+    .look {
+      width: calc((100% - var(--s-15)) / 2);
+    }
+  }
+
+  .menu {
+    gap: var(--s-15);
+  }
+}
